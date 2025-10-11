@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenRoots Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2d5a27;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #7fb069 0%, #a7c957 100%);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .data-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .image-preview {
+            margin-top: 0.5rem;
+        }
+        
+        .image-preview img {
+            border: 2px solid #e1e8e1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        .image-preview img:hover {
+            border-color: #4a7c59;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+        }
+        
+        .image-error {
+            padding: 12px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            color: #856404;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .image-error a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .image-error a:hover {
+            text-decoration: underline;
+        }
+        
+        .submission-item {
+            background: #f8f9fa;
+            border: 1px solid #e1e8e1;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .submission-item:hover {
+            background: #e8f5e8;
+            border-color: #4a7c59;
+        }
+        
+        .submission-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .submission-id {
+            font-weight: bold;
+            color: #2d5a27;
+        }
+        
+        .submission-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .submission-data {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .data-field {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .field-label {
+            font-weight: 600;
+            color: #4a7c59;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .field-value {
+            color: #333;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #e1e8e1;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 2rem;
+        }
+        
+        /* Login Styles */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .login-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            font-size: 3rem;
+            color: #2d5a27;
+            margin-bottom: 1rem;
+        }
+        
+        .login-title {
+            color: #2d5a27;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a7c59;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #4a7c59;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .error-message {
+            color: #dc3545;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: #f8d7da;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Content Management Styles */
+        .content-editor {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .editor-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            border: 2px solid #e1e8e1;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .tab-btn.active {
+            background: #2d5a27;
+            color: white;
+            border-color: #2d5a27;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .image-upload {
+            border: 2px dashed #e1e8e1;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        
+        .image-upload:hover {
+            border-color: #4a7c59;
+        }
+        
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .gallery-manager {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .gallery-item-actions {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .gallery-item-actions button {
+            background: rgba(220, 53, 69, 0.9);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .submission-data {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="login-logo">🌱</div>
+            <h2 class="login-title">GreenRoots Admin</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+                <div id="error-message" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="container hidden">
+        <button id="logout-btn" class="logout-btn">Logout</button>
+        <div class="header">
+            <h1>🌱 GreenRoots Admin Dashboard</h1>
+            <p>Manage website content and view analytics</p>
+        </div>
+        
+        <!-- Content Management Section -->
+        <div class="content-editor">
+            <h2 class="section-title">Content Management</h2>
+            <div class="editor-tabs">
+                <button class="tab-btn active" data-tab="hero">Hero Section</button>
+                <button class="tab-btn" data-tab="about">About</button>
+                <button class="tab-btn" data-tab="impact">Impact Stats</button>
+                <button class="tab-btn" data-tab="testimonials">Testimonials</button>
+                <button class="tab-btn" data-tab="events">Events</button>
+                <button class="tab-btn" data-tab="gallery">Gallery</button>
+            </div>
+            
+            <!-- Hero Section Tab -->
+            <div id="hero-tab" class="tab-content active">
+                <h3>Hero Section</h3>
+                <div class="form-group">
+                    <label for="hero-title">Main Title</label>
+                    <input type="text" id="hero-title" placeholder="Plant a Tree, Grow a Future">
+                </div>
+                <div class="form-group">
+                    <label for="hero-subtitle">Subtitle</label>
+                    <textarea id="hero-subtitle" placeholder="Together, we can turn cities green and make our planet breathe again"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveHeroContent()">Save Hero Content</button>
+            </div>
+            
+            <!-- About Section Tab -->
+            <div id="about-tab" class="tab-content">
+                <h3>About Section</h3>
+                <div class="form-group">
+                    <label for="about-title">Section Title</label>
+                    <input type="text" id="about-title" placeholder="Why GreenRoots Matters">
+                </div>
+                <div class="form-group">
+                    <label for="about-subtitle">Section Subtitle</label>
+                    <textarea id="about-subtitle" placeholder="Understanding the real-world problem we're solving together"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="problem-title">Problem Card Title</label>
+                        <input type="text" id="problem-title" placeholder="The Problem">
+                    </div>
+                    <div class="form-group">
+                        <label for="solution-title">Solution Card Title</label>
+                        <input type="text" id="solution-title" placeholder="Our Solution">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="problem-text">Problem Description</label>
+                    <textarea id="problem-text" placeholder="Urban areas are losing green spaces rapidly..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="solution-text">Solution Description</label>
+                    <textarea id="solution-text" placeholder="We connect communities with simple, actionable ways..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveAboutContent()">Save About Content</button>
+            </div>
+            
+            <!-- Impact Stats Tab -->
+            <div id="impact-tab" class="tab-content">
+                <h3>Impact Statistics</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="trees-planted">Trees Planted</label>
+                        <input type="number" id="trees-planted" placeholder="5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="volunteers">Active Volunteers</label>
+                        <input type="number" id="volunteers" placeholder="2000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cities">Cities Involved</label>
+                        <input type="number" id="cities" placeholder="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="co2-absorbed">CO2 Absorbed (lbs)</label>
+                        <input type="number" id="co2-absorbed" placeholder="240000">
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="saveImpactStats()">Save Impact Stats</button>
+            </div>
+            
+            <!-- Testimonials Tab -->
+            <div id="testimonials-tab" class="tab-content">
+                <h3>Testimonials Management</h3>
+                
+                <!-- Add New Testimonial Form -->
+                <div class="form-group">
+                    <h4>Add New Testimonial</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="testimonial-name">Person Name</label>
+                            <input type="text" id="testimonial-name" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="testimonial-role">Role/Title</label>
+                            <input type="text" id="testimonial-role" placeholder="Environmental Volunteer">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="testimonial-text">Testimonial Text</label>
+                        <textarea id="testimonial-text" rows="4" placeholder="Share their experience with GreenRoots..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="testimonial-rating">Rating (1-5)</label>
+                            <select id="testimonial-rating">
+                                <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+                                <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+                                <option value="3">⭐⭐⭐ (3 stars)</option>
+                                <option value="2">⭐⭐ (2 stars)</option>
+                                <option value="1">⭐ (1 star)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="testimonial-image">Profile Image URL (optional)</label>
+                            <input type="url" id="testimonial-image" placeholder="https://example.com/profile.jpg">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addTestimonial()">Add Testimonial</button>
+                </div>
+                
+                <!-- Existing Testimonials List -->
+                <div id="testimonials-list">
+                    <h4>Existing Testimonials</h4>
+                    <div id="testimonials-container"></div>
+                </div>
+            </div>
+            
+            <!-- Events Tab -->
+            <div id="events-tab" class="tab-content">
+                <h3>Events Management</h3>
+                
+                <!-- Add New Event Form -->
+                <div class="form-group">
+                    <h4>Add New Event</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-title">Event Title</label>
+                            <input type="text" id="event-title" placeholder="Community Tree Planting Day">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Event Date</label>
+                            <input type="date" id="event-date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-time">Event Time</label>
+                            <input type="time" id="event-time">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-location">Location</label>
+                            <input type="text" id="event-location" placeholder="Central Park, New York">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-description">Event Description</label>
+                        <textarea id="event-description" rows="4" placeholder="Describe the event details, what to expect, what to bring..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-capacity">Max Participants</label>
+                            <input type="number" id="event-capacity" placeholder="50" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-image">Event Image URL (optional)</label>
+                            <input type="url" id="event-image" placeholder="https://example.com/event.jpg">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-category">Event Category</label>
+                            <select id="event-category">
+                                <option value="tree-planting">🌳 Tree Planting</option>
+                                <option value="cleanup">🧹 Community Cleanup</option>
+                                <option value="education">📚 Environmental Education</option>
+                                <option value="workshop">🔧 Workshop</option>
+                                <option value="fundraiser">💰 Fundraiser</option>
+                                <option value="other">🌱 Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-status">Event Status</label>
+                            <select id="event-status">
+                                <option value="upcoming">📅 Upcoming</option>
+                                <option value="ongoing">🔄 Ongoing Registration</option>
+                                <option value="full">🚫 Registration Full</option>
+                                <option value="completed">✅ Completed</option>
+                                <option value="cancelled">❌ Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="addEvent()">Add Event</button>
+                </div>
+                
+                <!-- Existing Events List -->
+                <div id="events-list">
+                    <h4>Existing Events</h4>
+                    <div id="events-container"></div>
+                </div>
+            </div>
+            
+            <!-- Gallery Tab -->
+            <div id="gallery-tab" class="tab-content">
+                <h3>Gallery Management</h3>
+                
+                <!-- File Upload Section -->
+                <div class="form-group">
+                    <label>Upload Images from Device</label>
+                    <div class="image-upload" onclick="document.getElementById('gallery-upload').click()">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #4a7c59; margin-bottom: 1rem;"></i>
+                        <p>Click to upload images or drag and drop</p>
+                        <input type="file" id="gallery-upload" multiple accept="image/*" style="display: none;" onchange="handleGalleryUpload(event)">
+                    </div>
+                </div>
+                
+                <!-- URL Upload Section -->
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label>Add Image from URL</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="url" id="image-url" placeholder="https://example.com/image.jpg" style="margin-bottom: 0;">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="image-caption" placeholder="Image caption (optional)" style="margin-bottom: 0;">
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="addImageFromURL()" style="margin-top: 1rem;">
+                        <i class="fas fa-plus"></i>
+                        Add Image from URL
+                    </button>
+                </div>
+                
+                <div id="gallery-manager" class="gallery-manager"></div>
+            </div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="event-count">0</div>
+                <div class="stat-label">Event Registrations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="school-count">0</div>
+                <div class="stat-label">School Registrations</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="planning-count">0</div>
+                <div class="stat-label">Event Planning Requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="contact-count">0</div>
+                <div class="stat-label">Contact Submissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="story-count">0</div>
+                <div class="stat-label">Story Submissions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="work-count">0</div>
+                <div class="stat-label">Work Submissions</div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" onclick="refreshData()">
+                🔄 Refresh Data
+            </button>
+            <button class="btn btn-secondary" onclick="exportAllData()">
+                📊 Export All to CSV
+            </button>
+            <button class="btn btn-danger" onclick="clearAllData()">
+                🗑️ Clear All Data
+            </button>
+            <a href="index.html" class="btn btn-primary">
+                🏠 Back to Website
+            </a>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">📅 Event Registrations</h2>
+            <div id="event-registrations"></div>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">🏫 School Registrations</h2>
+            <div id="school-registrations"></div>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">📋 Event Planning Requests</h2>
+            <div id="event-planning"></div>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">📞 Contact Submissions</h2>
+            <div id="contact-submissions"></div>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">📖 Story Submissions</h2>
+            <div id="story-submissions"></div>
+        </div>
+        
+        <div class="data-section">
+            <h2 class="section-title">🚀 Work Submissions</h2>
+            <div id="work-submissions"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+        import { getDatabase, ref, set, get, push, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBu_EJujDB_gviiZscMF1ON_URgg_7olEk",
+            authDomain: "greenroot-b5258.firebaseapp.com",
+            databaseURL: "https://greenroot-b5258-default-rtdb.firebaseio.com",
+            projectId: "greenroot-b5258",
+            storageBucket: "greenroot-b5258.firebasestorage.app",
+            messagingSenderId: "73919337791",
+            appId: "1:73919337791:web:aa8564ba05e34b83682f8a",
+            measurementId: "G-FYDXLG646B"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+        const storage = getStorage(app);
+        
+        // Make Firebase functions globally available
+        window.auth = auth;
+        window.database = database;
+        window.storage = storage;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.signOut = signOut;
+        window.onAuthStateChanged = onAuthStateChanged;
+        window.dbRef = ref;
+        window.dbSet = set;
+        window.dbGet = get;
+        window.dbPush = push;
+        window.dbRemove = remove;
+        window.storageRef = storageRef;
+        window.uploadBytes = uploadBytes;
+        window.getDownloadURL = getDownloadURL;
+        window.deleteObject = deleteObject;
+        
+        // Initialize admin authentication after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAdmin();
+        });
+    </script>
+    
+    <script>
+        // Initialize admin system
+        function initializeAdmin() {
+            const loginScreen = document.getElementById('login-screen');
+            const adminDashboard = document.getElementById('admin-dashboard');
+            const loginForm = document.getElementById('login-form');
+            const logoutBtn = document.getElementById('logout-btn');
+            
+            // Check authentication state
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    loginScreen.classList.add('hidden');
+                    adminDashboard.classList.remove('hidden');
+                    loadAdminData();
+                } else {
+                    loginScreen.classList.remove('hidden');
+                    adminDashboard.classList.add('hidden');
+                }
+            });
+            
+            // Login form handler
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const errorMessage = document.getElementById('error-message');
+                
+                try {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } catch (error) {
+                    errorMessage.textContent = error.message;
+                    errorMessage.style.display = 'block';
+                }
+            });
+            
+            // Logout handler
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth);
+            });
+            
+            // Initialize tabs
+            initializeTabs();
+        }
+        
+        // Initialize tab functionality
+        function initializeTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    btn.classList.add('active');
+                    document.getElementById(tabId + '-tab').classList.add('active');
+                });
+            });
+        }
+        
+        // Load admin data
+        async function loadAdminData() {
+            await loadHeroContent();
+            await loadAboutContent();
+            await loadImpactStats();
+            await loadTestimonials();
+            await loadEvents();
+            await loadGallery();
+            loadFormSubmissions();
+        }
+        
+        // Load and display form submission data
+        async function loadFormSubmissions() {
+            const collections = ['event-registrations', 'school-registrations', 'event-planning', 'contact-submissions', 'story-submissions', 'work-submissions'];
+            
+            for (const collection of collections) {
+                try {
+                    // Try to load from Firebase first
+                    const firebaseData = await loadFromFirebase(collection);
+                    if (firebaseData && firebaseData.length > 0) {
+                        displayData(collection, firebaseData);
+                        updateCount(collection, firebaseData.length);
+                    } else {
+                        // Fallback to localStorage
+                        const localData = JSON.parse(localStorage.getItem(`greenroots_${collection}`) || '[]');
+                        displayData(collection, localData);
+                        updateCount(collection, localData.length);
+                    }
+                } catch (error) {
+                    console.error(`Error loading ${collection}:`, error);
+                    // Fallback to localStorage on error
+                    const localData = JSON.parse(localStorage.getItem(`greenroots_${collection}`) || '[]');
+                    displayData(collection, localData);
+                    updateCount(collection, localData.length);
+                }
+            }
+        }
+        
+        // Load data from Firebase Realtime Database
+        async function loadFromFirebase(collection) {
+            try {
+                const snapshot = await dbGet(dbRef(database, `submissions/${collection}`));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // Convert Firebase object to array
+                    return Object.keys(data).map(key => ({
+                        ...data[key],
+                        firebaseKey: key
+                    }));
+                }
+                return [];
+            } catch (error) {
+                console.error('Error loading from Firebase:', error);
+                return [];
+            }
+        }
+        
+        function displayData(collection, data) {
+            const container = document.getElementById(collection);
+            
+            if (data.length === 0) {
+                container.innerHTML = '<div class="empty-state">No submissions yet</div>';
+                return;
+            }
+            
+            container.innerHTML = data.map(item => {
+                const date = new Date(item.timestamp || item.submissionDate).toLocaleString();
+                
+                return `
+                    <div class="submission-item">
+                        <div class="submission-header">
+                            <span class="submission-id">ID: ${item.id || 'N/A'}</span>
+                            <span class="submission-date">${date}</span>
+                        </div>
+                        <div class="submission-data">
+                            ${Object.entries(item)
+                                .filter(([key]) => !['id', 'timestamp', 'submissionDate', 'userAgent', 'referrer', 'localStorageBackup', 'firebaseKey'].includes(key))
+                                .map(([key, value]) => {
+                                    if (key === 'imageUrl' && value) {
+                                        return `
+                                            <div class="data-field">
+                                                <div class="field-label">${formatFieldName(key)}</div>
+                                                <div class="field-value">
+                                                    <div class="image-preview">
+                                                        <img src="${value}" alt="Submission image" 
+                                                             style="max-width: 200px; max-height: 150px; border-radius: 8px; object-fit: cover;" 
+                                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                                                             onload="this.style.display='block'; this.nextElementSibling.style.display='none';" 
+                                                             onclick="window.open('${value}', '_blank')">
+                                                        <div class="image-error" style="display: none;">
+                                                            <strong>Image failed to load</strong><br>
+                                                            <a href="${value}" target="_blank">${value.length > 50 ? value.substring(0, 50) + '...' : value}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                    // Special formatting for specific fields
+                                    if (key === 'eventName') {
+                                        return `
+                                            <div class="data-field event-name-field">
+                                                <div class="field-label">${formatFieldName(key)}</div>
+                                                <div class="field-value" style="font-weight: bold; color: var(--primary-green); font-size: 1.1rem;">${value || 'Not provided'}</div>
+                                            </div>
+                                        `;
+                                    }
+                                    if (key === 'eventDate') {
+                                        return `
+                                            <div class="data-field">
+                                                <div class="field-label">${formatFieldName(key)}</div>
+                                                <div class="field-value" style="color: #0066cc; font-weight: 500;">
+                                                    <i class="fas fa-calendar-alt" style="margin-right: 0.5rem;"></i>
+                                                    ${value || 'Not provided'}
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                    if (key === 'eventLocation') {
+                                        return `
+                                            <div class="data-field">
+                                                <div class="field-label">${formatFieldName(key)}</div>
+                                                <div class="field-value" style="color: #28a745; font-weight: 500;">
+                                                    <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i>
+                                                    ${value || 'Not provided'}
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                    if (key === 'registrationDate') {
+                                        const date = new Date(value).toLocaleString();
+                                        return `
+                                            <div class="data-field">
+                                                <div class="field-label">${formatFieldName(key)}</div>
+                                                <div class="field-value" style="color: #6c757d; font-size: 0.9rem;">
+                                                    <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                                                    ${date}
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                    return `
+                                        <div class="data-field">
+                                            <div class="field-label">${formatFieldName(key)}</div>
+                                            <div class="field-value">${value || 'Not provided'}</div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function formatFieldName(key) {
+            return key.replace(/([A-Z])/g, ' $1')
+                     .replace(/^./, str => str.toUpperCase())
+                     .replace(/([a-z])([A-Z])/g, '$1 $2');
+        }
+        
+        function updateCount(collection, count) {
+            let countElementId;
+            if (collection === 'event-registrations') {
+                countElementId = 'event-count';
+            } else if (collection === 'school-registrations') {
+                countElementId = 'school-count';
+            } else if (collection === 'event-planning') {
+                countElementId = 'planning-count';
+            } else if (collection === 'contact-submissions') {
+                countElementId = 'contact-count';
+            } else if (collection === 'story-submissions') {
+                countElementId = 'story-count';
+            } else if (collection === 'work-submissions') {
+                countElementId = 'work-count';
+            }
+            
+            const countElement = document.getElementById(countElementId);
+            if (countElement) {
+                countElement.textContent = count;
+            }
+        }
+        
+        function refreshData() {
+            loadData();
+            alert('Data refreshed successfully!');
+        }
+        
+        async function exportAllData() {
+            const collections = ['event-registrations', 'school-registrations', 'event-planning', 'contact-submissions', 'story-submissions', 'work-submissions'];
+            
+            for (const collection of collections) {
+                try {
+                    // Try to get data from Firebase first, then fallback to localStorage
+                    let data = await loadFromFirebase(collection);
+                    if (!data || data.length === 0) {
+                        data = JSON.parse(localStorage.getItem(`greenroots_${collection}`) || '[]');
+                    }
+                    
+                    if (data.length > 0) {
+                        const headers = Object.keys(data[0]).filter(key => key !== 'firebaseKey');
+                        let csv = headers.join(',') + '\n';
+                        
+                        data.forEach(row => {
+                            const values = headers.map(header => {
+                                const value = row[header] || '';
+                                return `"${value.toString().replace(/"/g, '""')}"`;
+                            });
+                            csv += values.join(',') + '\n';
+                        });
+                        
+                        const blob = new Blob([csv], { type: 'text/csv' });
+                        const url = window.URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = `greenroots_${collection}_${new Date().toISOString().split('T')[0]}.csv`;
+                        link.click();
+                        window.URL.revokeObjectURL(url);
+                    }
+                } catch (error) {
+                    console.error(`Error exporting ${collection}:`, error);
+                }
+            }
+            
+            alert('Data exported to CSV files!');
+        }
+        
+        async function clearAllData() {
+            if (confirm('Are you sure you want to clear all stored form data? This cannot be undone.')) {
+                const collections = ['event-registrations', 'school-registrations', 'event-planning', 'contact-submissions', 'story-submissions', 'work-submissions'];
+                
+                for (const collection of collections) {
+                    try {
+                        // Clear from Firebase
+                        await dbRemove(dbRef(database, `submissions/${collection}`));
+                        // Clear from localStorage
+                        localStorage.removeItem(`greenroots_${collection}`);
+                    } catch (error) {
+                        console.error(`Error clearing ${collection}:`, error);
+                        // Still clear localStorage even if Firebase fails
+                        localStorage.removeItem(`greenroots_${collection}`);
+                    }
+                }
+                
+                await loadFormSubmissions();
+                alert('All data cleared successfully!');
+            }
+        }
+        
+        // Legacy function - now handled by the async version above
+        
+        // Content management functions
+        async function saveHeroContent() {
+            const title = document.getElementById('hero-title').value;
+            const subtitle = document.getElementById('hero-subtitle').value;
+            
+            try {
+                await dbSet(dbRef(database, 'content/hero'), {
+                    title: title,
+                    subtitle: subtitle,
+                    updatedAt: Date.now()
+                });
+                alert('Hero content saved successfully!');
+            } catch (error) {
+                alert('Error saving hero content: ' + error.message);
+            }
+        }
+        
+        async function loadHeroContent() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/hero'));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.getElementById('hero-title').value = data.title || '';
+                    document.getElementById('hero-subtitle').value = data.subtitle || '';
+                }
+            } catch (error) {
+                console.error('Error loading hero content:', error);
+            }
+        }
+        
+        async function saveAboutContent() {
+            const aboutData = {
+                title: document.getElementById('about-title').value,
+                subtitle: document.getElementById('about-subtitle').value,
+                problemTitle: document.getElementById('problem-title').value,
+                solutionTitle: document.getElementById('solution-title').value,
+                problemText: document.getElementById('problem-text').value,
+                solutionText: document.getElementById('solution-text').value,
+                updatedAt: Date.now()
+            };
+            
+            try {
+                await dbSet(dbRef(database, 'content/about'), aboutData);
+                alert('About content saved successfully!');
+            } catch (error) {
+                alert('Error saving about content: ' + error.message);
+            }
+        }
+        
+        async function loadAboutContent() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/about'));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.getElementById('about-title').value = data.title || '';
+                    document.getElementById('about-subtitle').value = data.subtitle || '';
+                    document.getElementById('problem-title').value = data.problemTitle || '';
+                    document.getElementById('solution-title').value = data.solutionTitle || '';
+                    document.getElementById('problem-text').value = data.problemText || '';
+                    document.getElementById('solution-text').value = data.solutionText || '';
+                }
+            } catch (error) {
+                console.error('Error loading about content:', error);
+            }
+        }
+        
+        async function saveImpactStats() {
+            const statsData = {
+                treesPlanted: parseInt(document.getElementById('trees-planted').value) || 0,
+                volunteers: parseInt(document.getElementById('volunteers').value) || 0,
+                cities: parseInt(document.getElementById('cities').value) || 0,
+                co2Absorbed: parseInt(document.getElementById('co2-absorbed').value) || 0,
+                updatedAt: Date.now()
+            };
+            
+            try {
+                await dbSet(dbRef(database, 'content/impact'), statsData);
+                alert('Impact stats saved successfully!');
+            } catch (error) {
+                alert('Error saving impact stats: ' + error.message);
+            }
+        }
+        
+        async function loadImpactStats() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/impact'));
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    document.getElementById('trees-planted').value = data.treesPlanted || '';
+                    document.getElementById('volunteers').value = data.volunteers || '';
+                    document.getElementById('cities').value = data.cities || '';
+                    document.getElementById('co2-absorbed').value = data.co2Absorbed || '';
+                }
+            } catch (error) {
+                console.error('Error loading impact stats:', error);
+            }
+        }
+        
+        async function loadTestimonials() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/testimonials'));
+                const container = document.getElementById('testimonials-container');
+                
+                if (snapshot.exists()) {
+                    const testimonials = snapshot.val();
+                    const testimonialsArray = Object.keys(testimonials).map(key => ({
+                        ...testimonials[key],
+                        id: key
+                    }));
+                    
+                    container.innerHTML = '';
+                    testimonialsArray.forEach(testimonial => {
+                        const testimonialCard = createTestimonialCard(testimonial);
+                        container.appendChild(testimonialCard);
+                    });
+                } else {
+                    container.innerHTML = '<p>No testimonials added yet.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading testimonials:', error);
+            }
+        }
+        
+        function createTestimonialCard(testimonial) {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.style.cssText = `
+                border: 1px solid #e1e8e1;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px 0;
+                background: #f8f9fa;
+            `;
+            
+            const stars = '⭐'.repeat(testimonial.rating || 5);
+            
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <h5 style="margin: 0 0 5px 0; color: #2d5a27;">${testimonial.name}</h5>
+                        <p style="margin: 0 0 5px 0; font-size: 0.9rem; color: #6c757d;">${testimonial.role}</p>
+                        <div style="margin: 5px 0;">${stars}</div>
+                        <p style="margin: 10px 0; font-style: italic;">"${testimonial.text}"</p>
+                        ${testimonial.image ? `<img src="${testimonial.image}" alt="${testimonial.name}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">` : ''}
+                    </div>
+                    <button onclick="deleteTestimonial('${testimonial.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                        Delete
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        async function loadEvents() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/events'));
+                const container = document.getElementById('events-container');
+                
+                if (snapshot.exists()) {
+                    const events = snapshot.val();
+                    const eventsArray = Object.keys(events).map(key => ({
+                        ...events[key],
+                        id: key
+                    }));
+                    
+                    // Sort events by date
+                    eventsArray.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    
+                    container.innerHTML = '';
+                    eventsArray.forEach(event => {
+                        const eventCard = createEventCard(event);
+                        container.appendChild(eventCard);
+                    });
+                } else {
+                    container.innerHTML = '<p>No events added yet.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading events:', error);
+            }
+        }
+        
+        function createEventCard(event) {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.style.cssText = `
+                border: 1px solid #e1e8e1;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px 0;
+                background: #f8f9fa;
+            `;
+            
+            const eventDate = new Date(event.date).toLocaleDateString();
+            const statusColors = {
+                'upcoming': '#17a2b8',
+                'ongoing': '#28a745',
+                'full': '#ffc107',
+                'completed': '#6c757d',
+                'cancelled': '#dc3545'
+            };
+            
+            card.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: start;">
+                    <div style="flex: 1;">
+                        <h5 style="margin: 0 0 5px 0; color: #2d5a27;">${event.title}</h5>
+                        <p style="margin: 0 0 5px 0; font-size: 0.9rem;"><strong>📅 Date:</strong> ${eventDate} at ${event.time}</p>
+                        <p style="margin: 0 0 5px 0; font-size: 0.9rem;"><strong>📍 Location:</strong> ${event.location}</p>
+                        <p style="margin: 0 0 5px 0; font-size: 0.9rem;"><strong>👥 Capacity:</strong> ${event.capacity} participants</p>
+                        <p style="margin: 0 0 10px 0; font-size: 0.9rem;"><strong>Category:</strong> ${event.category}</p>
+                        <span style="background: ${statusColors[event.status] || '#6c757d'}; color: white; padding: 3px 8px; border-radius: 12px; font-size: 0.8rem;">
+                            ${event.status.toUpperCase()}
+                        </span>
+                        <p style="margin: 10px 0; color: #6c757d;">${event.description}</p>
+                        ${event.image ? `<img src="${event.image}" alt="${event.title}" style="width: 100px; height: 60px; border-radius: 4px; object-fit: cover; margin-top: 10px;">` : ''}
+                    </div>
+                    <button onclick="deleteEvent('${event.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                        Delete
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        async function loadGallery() {
+            try {
+                const snapshot = await dbGet(dbRef(database, 'content/gallery'));
+                const galleryManager = document.getElementById('gallery-manager');
+                
+                if (snapshot.exists()) {
+                    const images = snapshot.val();
+                    galleryManager.innerHTML = '';
+                    
+                    Object.keys(images).forEach(key => {
+                        const image = images[key];
+                        const imageDiv = document.createElement('div');
+                        imageDiv.className = 'gallery-item';
+                        imageDiv.innerHTML = `
+                            <img src="${image.url}" alt="${image.caption || 'Gallery image'}">
+                            <div class="gallery-item-actions">
+                                <button onclick="deleteGalleryImage('${key}')">Delete</button>
+                            </div>
+                        `;
+                        galleryManager.appendChild(imageDiv);
+                    });
+                } else {
+                    galleryManager.innerHTML = '<p>No images uploaded yet. Upload some images to get started!</p>';
+                }
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+            }
+        }
+        
+        async function handleGalleryUpload(event) {
+            const files = event.target.files;
+            const uploadBtn = document.querySelector('.image-upload');
+            
+            // Show loading state
+            uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #4a7c59; margin-bottom: 1rem;"></i><p>Uploading images...</p>';
+            
+            try {
+                for (let file of files) {
+                    const imageRef = storageRef(storage, `gallery/${Date.now()}_${file.name}`);
+                    const snapshot = await uploadBytes(imageRef, file);
+                    const downloadURL = await getDownloadURL(snapshot.ref);
+                    
+                    // Save image info to database
+                    const imageData = {
+                        url: downloadURL,
+                        caption: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
+                        type: 'upload',
+                        uploadedAt: Date.now()
+                    };
+                    
+                    await dbPush(dbRef(database, 'content/gallery'), imageData);
+                }
+                
+                // Reload gallery
+                await loadGallery();
+                alert('Images uploaded successfully!');
+                
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                alert('Error uploading image: ' + error.message);
+            } finally {
+                // Reset upload area
+                uploadBtn.innerHTML = '<i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #4a7c59; margin-bottom: 1rem;"></i><p>Click to upload images or drag and drop</p>';
+                event.target.value = ''; // Clear file input
+            }
+        }
+        
+        async function addImageFromURL() {
+            const urlInput = document.getElementById('image-url');
+            const captionInput = document.getElementById('image-caption');
+            const imageUrl = urlInput.value.trim();
+            const caption = captionInput.value.trim() || 'Gallery Image';
+            
+            if (!imageUrl) {
+                alert('Please enter an image URL');
+                return;
+            }
+            
+            // Validate URL format
+            try {
+                new URL(imageUrl);
+            } catch {
+                alert('Please enter a valid URL');
+                return;
+            }
+            
+            // Check if it's an image URL
+            const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+            const isImageUrl = imageExtensions.some(ext => imageUrl.toLowerCase().includes(ext));
+            
+            if (!isImageUrl) {
+                const confirmAdd = confirm('This URL might not be an image. Do you want to add it anyway?');
+                if (!confirmAdd) return;
+            }
+            
+            try {
+                // Test if image loads
+                const testImg = new Image();
+                testImg.crossOrigin = 'anonymous';
+                
+                testImg.onload = async () => {
+                    try {
+                        // Save image info to database
+                        const imageData = {
+                            url: imageUrl,
+                            caption: caption,
+                            type: 'url',
+                            uploadedAt: Date.now()
+                        };
+                        
+                        await dbPush(dbRef(database, 'content/gallery'), imageData);
+                        
+                        // Clear inputs
+                        urlInput.value = '';
+                        captionInput.value = '';
+                        
+                        // Reload gallery
+                        await loadGallery();
+                        alert('Image added successfully!');
+                        
+                    } catch (error) {
+                        console.error('Error saving image:', error);
+                        alert('Error saving image: ' + error.message);
+                    }
+                };
+                
+                testImg.onerror = () => {
+                    alert('Unable to load image from this URL. Please check the URL and try again.');
+                };
+                
+                testImg.src = imageUrl;
+                
+            } catch (error) {
+                console.error('Error adding image from URL:', error);
+                alert('Error adding image: ' + error.message);
+            }
+        }
+        
+        async function deleteGalleryImage(imageKey) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                try {
+                    await dbRemove(dbRef(database, `content/gallery/${imageKey}`));
+                    await loadGallery();
+                    alert('Image deleted successfully!');
+                } catch (error) {
+                    alert('Error deleting image: ' + error.message);
+                }
+            }
+        }
+        
+        // Testimonials Management Functions
+        async function addTestimonial() {
+            const name = document.getElementById('testimonial-name').value.trim();
+            const role = document.getElementById('testimonial-role').value.trim();
+            const text = document.getElementById('testimonial-text').value.trim();
+            const rating = document.getElementById('testimonial-rating').value;
+            const image = document.getElementById('testimonial-image').value.trim();
+            
+            if (!name || !role || !text) {
+                alert('Please fill in all required fields (Name, Role, and Testimonial Text)');
+                return;
+            }
+            
+            try {
+                const testimonialData = {
+                    name: name,
+                    role: role,
+                    text: text,
+                    rating: parseInt(rating),
+                    image: image || null,
+                    createdAt: Date.now()
+                };
+                
+                await dbPush(dbRef(database, 'content/testimonials'), testimonialData);
+                
+                // Clear form
+                document.getElementById('testimonial-name').value = '';
+                document.getElementById('testimonial-role').value = '';
+                document.getElementById('testimonial-text').value = '';
+                document.getElementById('testimonial-rating').value = '5';
+                document.getElementById('testimonial-image').value = '';
+                
+                await loadTestimonials();
+                alert('Testimonial added successfully!');
+                
+            } catch (error) {
+                console.error('Error adding testimonial:', error);
+                alert('Error adding testimonial: ' + error.message);
+            }
+        }
+        
+        async function deleteTestimonial(testimonialId) {
+            if (confirm('Are you sure you want to delete this testimonial?')) {
+                try {
+                    await dbRemove(dbRef(database, `content/testimonials/${testimonialId}`));
+                    await loadTestimonials();
+                    alert('Testimonial deleted successfully!');
+                } catch (error) {
+                    console.error('Error deleting testimonial:', error);
+                    alert('Error deleting testimonial: ' + error.message);
+                }
+            }
+        }
+        
+        // Events Management Functions
+        async function addEvent() {
+            const title = document.getElementById('event-title').value.trim();
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const location = document.getElementById('event-location').value.trim();
+            const description = document.getElementById('event-description').value.trim();
+            const capacity = document.getElementById('event-capacity').value;
+            const image = document.getElementById('event-image').value.trim();
+            const category = document.getElementById('event-category').value;
+            const status = document.getElementById('event-status').value;
+            
+            if (!title || !date || !time || !location || !description || !capacity) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            try {
+                const eventData = {
+                    title: title,
+                    date: date,
+                    time: time,
+                    location: location,
+                    description: description,
+                    capacity: parseInt(capacity),
+                    image: image || null,
+                    category: category,
+                    status: status,
+                    registrations: 0,
+                    createdAt: Date.now()
+                };
+                
+                await dbPush(dbRef(database, 'content/events'), eventData);
+                
+                // Clear form
+                document.getElementById('event-title').value = '';
+                document.getElementById('event-date').value = '';
+                document.getElementById('event-time').value = '';
+                document.getElementById('event-location').value = '';
+                document.getElementById('event-description').value = '';
+                document.getElementById('event-capacity').value = '';
+                document.getElementById('event-image').value = '';
+                document.getElementById('event-category').value = 'tree-planting';
+                document.getElementById('event-status').value = 'upcoming';
+                
+                await loadEvents();
+                alert('Event added successfully!');
+                
+            } catch (error) {
+                console.error('Error adding event:', error);
+                alert('Error adding event: ' + error.message);
+            }
+        }
+        
+        async function deleteEvent(eventId) {
+            if (confirm('Are you sure you want to delete this event?')) {
+                try {
+                    await dbRemove(dbRef(database, `content/events/${eventId}`));
+                    await loadEvents();
+                    alert('Event deleted successfully!');
+                } catch (error) {
+                    console.error('Error deleting event:', error);
+                    alert('Error deleting event: ' + error.message);
+                }
+            }
+        }
+        
+        // Testimonials and Events functions are defined above
+        
+        // Auto-refresh form submissions every 30 seconds
+        setInterval(loadFormSubmissions, 30000);
+    </script>
+</body>
+</html>

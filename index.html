@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenRoots - Plant a Tree, Grow a Future 🌱</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="scrollToSection('home')">
+                <span>GreenRoots</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#help" class="nav-link">How to Help</a></li>
+                <li><a href="#impact" class="nav-link">Impact</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#testimonials" class="nav-link">Stories</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#share-story" class="nav-link">Share Story</a></li>
+                <li><a href="#contact" class="nav-link">Join Us</a></li>
+                <li><a href="#" class="nav-link" onclick="openAdminLogin()">Admin</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating CTA Button -->
+    <div class="floating-cta" id="floating-cta">
+        <i class="fas fa-seedling"></i>
+        <span>Plant a Tree</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-leaves"></div>
+            <canvas id="particles-canvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+                Plant a Tree, <br>
+                <span class="gradient-text">Grow a Future</span> 🌱
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="400">
+                Together, we can turn cities green and make our planet breathe again
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <button class="btn btn-primary" onclick="scrollToSection('help')">
+                    <i class="fas fa-seedling"></i>
+                    Plant a Tree
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+                    <i class="fas fa-users"></i>
+                    Join Movement
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="800">
+            <div class="scroll-arrow"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why GreenRoots Matters</h2>
+                <p>Understanding the real-world problem we're solving together</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card" data-aos="fade-right" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>The Problem</h3>
+                    <p>Urban areas are losing green spaces rapidly. Deforestation and climate change threaten our future, while community participation in environmental initiatives remains low.</p>
+                </div>
+                
+                <div class="about-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Our Solution</h3>
+                    <p>We connect communities with simple, actionable ways to contribute to urban greenery. Every small step today can grow into a forest tomorrow.</p>
+                </div>
+                
+                <div class="about-card" data-aos="fade-left" data-aos-delay="600">
+                    <div class="card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>The Impact</h3>
+                    <p>When communities come together, amazing things happen. One tree produces oxygen for 4 people and can absorb 48 pounds of CO2 annually.</p>
+                </div>
+            </div>
+
+            <div class="eco-facts" data-aos="fade-up" data-aos-delay="800">
+                <div class="fact-item">
+                    <span class="fact-number" data-count="1">0</span>
+                    <span class="fact-text">tree produces oxygen for 4 people</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-number" data-count="48">0</span>
+                    <span class="fact-text">pounds of CO2 absorbed annually per tree</span>
+                </div>
+                <div class="fact-item">
+                    <span class="fact-number" data-count="30">0</span>
+                    <span class="fact-text">% reduction in energy costs with proper tree placement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Help Section -->
+    <section id="help" class="help">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>How You Can Help</h2>
+                <p>Simple steps to make a big difference in your community</p>
+            </div>
+            
+            <div class="help-steps">
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Plant a Tree</h3>
+                    <p>Choose native species, find the right location, and plant with proper spacing. We provide guides for your local area.</p>
+                    <ul class="step-tips">
+                        <li>Research native species</li>
+                        <li>Get necessary permissions</li>
+                        <li>Dig appropriate hole size</li>
+                        <li>Water immediately after planting</li>
+                    </ul>
+                </div>
+                
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Care for It</h3>
+                    <p>Regular watering, pruning, and monitoring ensure your tree grows healthy and strong for years to come.</p>
+                    <ul class="step-tips">
+                        <li>Water 2-3 times per week</li>
+                        <li>Mulch around the base</li>
+                        <li>Prune dead branches</li>
+                        <li>Monitor for pests/diseases</li>
+                    </ul>
+                </div>
+                
+                <div class="step-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Spread the Word</h3>
+                    <p>Share your tree planting journey on social media and inspire others to join the green movement.</p>
+                    <ul class="step-tips">
+                        <li>Take before/after photos</li>
+                        <li>Share on social media</li>
+                        <li>Tag #GreenRoots</li>
+                        <li>Invite friends to participate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Our Growing Impact</h2>
+                <p>See how communities worldwide are making a difference</p>
+            </div>
+            
+            <div class="impact-stats">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Trees Planted</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="75"></div>
+                    </div>
+                    <span class="progress-text">75% of 2024 goal achieved</span>
+                </div>
+                
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-count="2000">0</div>
+                    <div class="stat-label">Active Volunteers</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="60"></div>
+                    </div>
+                    <span class="progress-text">Growing every month</span>
+                </div>
+                
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="stat-number" data-count="15">0</div>
+                    <div class="stat-label">Cities Involved</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="90"></div>
+                    </div>
+                    <span class="progress-text">Expanding nationwide</span>
+                </div>
+                
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="stat-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="stat-number" data-count="240000">0</div>
+                    <div class="stat-label">Pounds CO2 Absorbed</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="85"></div>
+                    </div>
+                    <span class="progress-text">Making air cleaner</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Gallery</h2>
+                <p>Beautiful moments from our environmental conservation efforts</p>
+            </div>
+            
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items will be populated dynamically from Firebase -->
+                <div class="loading-message" style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #6c757d;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Loading gallery images...</p>
+                </div>
+            </div>
+            
+            <div class="gallery-controls" data-aos="fade-up" data-aos-delay="400">
+                <button class="btn btn-outline" onclick="loadMoreGallery()">
+                    <i class="fas fa-plus"></i>
+                    Load More Photos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Stories from Our Community</h2>
+                <p>Real experiences from people making a difference in their neighborhoods</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Joining GreenRoots changed my perspective on environmental action. We've planted over 200 trees in our neighborhood, and the air quality has noticeably improved. My children now understand the importance of caring for our planet."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Sarah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Community Leader, Seattle</span>
+                                <div class="author-stats">
+                                    <span>🌳 200+ trees planted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"As a teacher, I love how GreenRoots provides educational resources for my students. We've created a school forest that serves as an outdoor classroom. The kids are so engaged when learning about nature firsthand."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Michael Chen">
+                            </div>
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Elementary Teacher, Portland</span>
+                                <div class="author-stats">
+                                    <span>🎓 500+ students educated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"Our corporate team building through GreenRoots was incredible. Not only did we strengthen our bonds as colleagues, but we also contributed to reforesting a local park. It's meaningful work that brings people together."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Emily Rodriguez">
+                            </div>
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <span>HR Director, Tech Company</span>
+                                <div class="author-stats">
+                                    <span>👥 50+ employees involved</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>"I started as a volunteer and now coordinate tree planting events across three cities. GreenRoots gave me the tools and community support to turn my passion for the environment into meaningful action."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="David Park">
+                            </div>
+                            <div class="author-info">
+                                <h4>David Park</h4>
+                                <span>Regional Coordinator, California</span>
+                                <div class="author-stats">
+                                    <span>🌍 3 cities coordinated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonials-stats" data-aos="fade-up" data-aos-delay="1000">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1200">0</div>
+                    <div class="stat-label">Active Volunteers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="89">0</div>
+                    <div class="stat-label">Success Stories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="25">0</div>
+                    <div class="stat-label">Communities Transformed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Upcoming Events & Workshops</h2>
+                <p>Join us in person or virtually for tree planting events and educational workshops</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="event-badge">Featured Event</div>
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=250&fit=crop" alt="Community Tree Planting Day">
+                        <div class="event-date">
+                            <span class="month">Nov</span>
+                            <span class="day">15</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Community Tree Planting Day</h3>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Central Park, New York</span>
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 4:00 PM</span>
+                            <span><i class="fas fa-users"></i> 200+ Expected</span>
+                        </div>
+                        <p>Join hundreds of volunteers for our biggest tree planting event of the year. We'll be planting native oak and maple trees to restore the park's ecosystem.</p>
+                        <div class="event-highlights">
+                            <span class="highlight">🌳 500 trees to plant</span>
+                            <span class="highlight">🍕 Free lunch provided</span>
+                            <span class="highlight">🎁 Volunteer certificates</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="openEventRegistration('community-planting', 'Community Tree Planting', 'Saturday, March 15, 2025 at 9:00 AM', 'Central Park, New York')">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop" alt="Past Event">
+                        <div class="event-date">
+                            <span class="month">Oct</span>
+                            <span class="day">05</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-category">🌳 PAST EVENT</div>
+                        <h3>Urban Forest Initiative</h3>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Downtown Park</span>
+                            <span><i class="fas fa-clock"></i> 8:00 AM - 3:00 PM</span>
+                            <span><i class="fas fa-users"></i> Event Completed</span>
+                        </div>
+                        <p>Successfully planted 200 native trees in the downtown area. Thank you to all volunteers who participated!</p>
+                        <div class="event-highlights">
+                            <span class="highlight">✅ 200 trees planted</span>
+                            <span class="highlight">👥 150 volunteers</span>
+                            <span class="highlight">🎉 Great success!</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="openEventRegistration('past-event', 'Urban Forest Initiative', 'Saturday, October 5, 2024 at 8:00 AM', 'Downtown Park')">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1574263867128-a3d5c1b1deaa?w=400&h=200&fit=crop" alt="Tree Care Workshop">
+                        <div class="event-date">
+                            <span class="month">Nov</span>
+                            <span class="day">22</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Tree Care & Maintenance Workshop</h3>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Online Webinar</span>
+                            <span><i class="fas fa-clock"></i> 7:00 PM - 8:30 PM</span>
+                        </div>
+                        <p>Learn professional techniques for caring for newly planted trees and maintaining mature urban forests.</p>
+                        <button class="btn btn-primary" onclick="openEventRegistration('workshop', 'Tree Care & Maintenance Workshop', 'Friday, November 22, 2024 at 7:00 PM', 'Online Webinar')">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=200&fit=crop" alt="Urban Forest Tour">
+                        <div class="event-date">
+                            <span class="month">Dec</span>
+                            <span class="day">05</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Urban Forest Discovery Tour</h3>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Golden Gate Park, SF</span>
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</span>
+                        </div>
+                        <p>Guided tour showcasing successful urban reforestation projects and their environmental impact.</p>
+                        <button class="btn btn-primary" onclick="openEventRegistration('tour', 'Urban Forest Discovery Tour', 'Thursday, December 5, 2024 at 10:00 AM', 'Golden Gate Park, SF')">Register Now</button>
+                    </div>
+                </div>
+                
+                <div class="event-card" data-aos="fade-up" data-aos-delay="800">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=200&fit=crop" alt="Kids Environmental Day">
+                        <div class="event-date">
+                            <span class="month">Dec</span>
+                            <span class="day">12</span>
+                        </div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Kids Environmental Education Day</h3>
+                        <div class="event-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Various Schools</span>
+                            <span><i class="fas fa-clock"></i> All Day Event</span>
+                        </div>
+                        <p>Interactive workshops teaching children about trees, ecosystems, and environmental stewardship.</p>
+                        <button class="btn btn-outline" onclick="registerSchool()">Register School</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="events-cta" data-aos="fade-up" data-aos-delay="1000">
+                <h3>Want to Host Your Own Event?</h3>
+                <p>We provide resources, guidance, and support for community-led tree planting initiatives</p>
+                <button class="btn btn-primary" onclick="startPlanning()">Start Planning</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Resources & Learning Center</h2>
+                <p>Everything you need to become an effective environmental steward</p>
+            </div>
+            
+            <div class="resources-categories">
+                <div class="category-tabs" data-aos="fade-up" data-aos-delay="200">
+                    <button class="tab-btn active" data-tab="guides">Planting Guides</button>
+                    <button class="tab-btn" data-tab="tools">Tools & Equipment</button>
+                    <button class="tab-btn" data-tab="education">Educational Materials</button>
+                    <button class="tab-btn" data-tab="research">Research & Data</button>
+                </div>
+                
+                <div class="tab-content active" id="guides">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h3>Complete Tree Planting Guide</h3>
+                            <p>Comprehensive 50-page guide covering species selection, site preparation, planting techniques, and aftercare.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-download"></i> 15,000+ downloads</span>
+                                <span><i class="fas fa-star"></i> 4.9/5 rating</span>
+                            </div>
+                            <button class="btn btn-outline" onclick="downloadResource('planting-guide')">Download PDF</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="resource-icon">
+                                <i class="fas fa-map"></i>
+                            </div>
+                            <h3>Native Species Database</h3>
+                            <p>Interactive database of native tree species organized by region, climate, and soil conditions.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-database"></i> 500+ species</span>
+                                <span><i class="fas fa-globe"></i> Global coverage</span>
+                            </div>
+                            <button class="btn btn-outline" onclick="exploreDatabase()">Explore Database</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="resource-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <h3>Video Tutorial Series</h3>
+                            <p>Step-by-step video tutorials covering everything from seedling care to mature tree maintenance.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-play"></i> 25 videos</span>
+                                <span><i class="fas fa-eye"></i> 100K+ views</span>
+                            </div>
+                            <button class="btn btn-outline" onclick="watchVideos()">Watch Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="tools">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Essential Tools Checklist</h3>
+                            <p>Complete list of recommended tools for tree planting, with budget-friendly alternatives and professional options.</p>
+                            <button class="btn btn-outline">View Checklist</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="resource-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3>Equipment Suppliers</h3>
+                            <p>Curated list of trusted suppliers offering quality tools and materials at discounted rates for community groups.</p>
+                            <button class="btn btn-outline">Browse Suppliers</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="resource-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>Project Cost Calculator</h3>
+                            <p>Interactive tool to estimate costs for tree planting projects based on location, species, and scale.</p>
+                            <button class="btn btn-outline">Calculate Costs</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="education">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Curriculum for Educators</h3>
+                            <p>Ready-to-use lesson plans for K-12 teachers covering environmental science and conservation topics.</p>
+                            <button class="btn btn-outline">Download Curriculum</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="resource-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>Interactive Learning Games</h3>
+                            <p>Engaging online games that teach children about ecosystems, biodiversity, and environmental stewardship.</p>
+                            <button class="btn btn-outline">Play Games</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="resource-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3>Certification Programs</h3>
+                            <p>Professional certification courses for arborists, environmental educators, and community organizers.</p>
+                            <button class="btn btn-outline">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="research">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Impact Studies & Reports</h3>
+                            <p>Scientific research documenting the environmental and social benefits of urban tree planting initiatives.</p>
+                            <button class="btn btn-outline">Read Studies</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="400">
+                            <div class="resource-icon">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <h3>Global Forest Data</h3>
+                            <p>Real-time data on global forest coverage, deforestation rates, and reforestation progress worldwide.</p>
+                            <button class="btn btn-outline">View Data</button>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="500">
+                            <div class="resource-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Research Partnerships</h3>
+                            <p>Collaborate with universities and research institutions on environmental studies and conservation projects.</p>
+                            <button class="btn btn-outline">Partner With Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Your Story Section -->
+    <section id="share-story" class="share-story">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Share Your Story</h2>
+                <p>Tell us about your environmental journey and inspire others</p>
+            </div>
+            
+            <div class="story-form-container" data-aos="fade-up" data-aos-delay="200">
+                <form class="story-form" id="story-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="story-name">Your Name</label>
+                            <input type="text" id="story-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="story-email">Email Address</label>
+                            <input type="email" id="story-email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="story-title">Story Title</label>
+                        <input type="text" id="story-title" name="title" placeholder="Give your story a compelling title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="story-content">Your Environmental Story</label>
+                        <textarea id="story-content" name="content" rows="6" placeholder="Share your experience with environmental conservation, tree planting, or community involvement..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="story-location">Location</label>
+                            <input type="text" id="story-location" name="location" placeholder="City, State/Country">
+                        </div>
+                        <div class="form-group">
+                            <label for="story-image">Image URL (optional)</label>
+                            <input type="url" id="story-image" name="imageUrl" placeholder="https://example.com/your-photo.jpg">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-heart"></i>
+                        Share My Story
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Your Work Section -->
+    <section id="share-work" class="share-work">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Share Your Work</h2>
+                <p>Showcase your environmental projects and conservation efforts</p>
+            </div>
+            
+            <div class="work-form-container" data-aos="fade-up" data-aos-delay="200">
+                <form class="work-form" id="work-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="work-name">Your Name</label>
+                            <input type="text" id="work-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="work-email">Email Address</label>
+                            <input type="email" id="work-email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="work-title">Project Title</label>
+                            <input type="text" id="work-title" name="title" placeholder="Name of your environmental project" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="work-category">Project Category</label>
+                            <select id="work-category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="tree-planting">Tree Planting</option>
+                                <option value="community-garden">Community Garden</option>
+                                <option value="cleanup">Environmental Cleanup</option>
+                                <option value="education">Environmental Education</option>
+                                <option value="conservation">Wildlife Conservation</option>
+                                <option value="renewable-energy">Renewable Energy</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work-description">Project Description</label>
+                        <textarea id="work-description" name="description" rows="5" placeholder="Describe your project, its goals, impact, and what makes it special..." required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="work-location">Project Location</label>
+                            <input type="text" id="work-location" name="location" placeholder="Where is/was your project located?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="work-duration">Project Duration</label>
+                            <input type="text" id="work-duration" name="duration" placeholder="e.g., 6 months, Ongoing, Completed">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="work-participants">Number of Participants</label>
+                            <input type="number" id="work-participants" name="participants" placeholder="How many people were involved?" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="work-impact">Environmental Impact</label>
+                            <input type="text" id="work-impact" name="impact" placeholder="e.g., 100 trees planted, 500 lbs waste removed">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work-image">Project Image URL</label>
+                        <input type="url" id="work-image" name="imageUrl" placeholder="https://example.com/project-photo.jpg" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="work-website">Project Website/Social Media (optional)</label>
+                        <input type="url" id="work-website" name="website" placeholder="https://example.com or social media link">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-upload"></i>
+                        Share My Work
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Join Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Join the Green Movement</h2>
+                <p>Ready to make a difference? Connect with us and start your tree planting journey</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form-container" data-aos="fade-right" data-aos-delay="200">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Your City</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">How would you like to help?</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Choose an option</option>
+                                <option value="plant">Plant trees in my area</option>
+                                <option value="volunteer">Volunteer for events</option>
+                                <option value="organize">Organize community events</option>
+                                <option value="sponsor">Sponsor tree planting</option>
+                                <option value="educate">Help with education</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your green vision</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Share your ideas for making your community greener..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            Join GreenRoots
+                        </button>
+                    </form>
+                    
+                    <div class="form-success" id="form-success">
+                        <div class="success-animation">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Welcome to GreenRoots! 🌱</h3>
+                        <p>Thank you for joining our mission. We'll be in touch soon with ways you can start making a difference in your community.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-info" data-aos="fade-left" data-aos-delay="400">
+                    <div class="info-card">
+                        <h3>Connect With Us</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                                <span>@greenroots</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-youtube"></i>
+                                <span>GreenRoots Channel</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                                <span>GreenRoots Community</span>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                                <span>@greenrootsorg</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="downloadGuide()">
+                                <i class="fas fa-download"></i>
+                                <span>Download Planting Guide</span>
+                            </button>
+                            <button class="action-btn" onclick="findEvents()">
+                                <i class="fas fa-calendar"></i>
+                                <span>Find Local Events</span>
+                            </button>
+                            <button class="action-btn" onclick="shareWebsite()">
+                                <i class="fas fa-share"></i>
+                                <span>Share GreenRoots</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="inspirational-quote" data-aos="fade-up" data-aos-delay="600">
+                        <blockquote>
+                            "A small step today can grow into a forest tomorrow."
+                        </blockquote>
+                        <cite>- GreenRoots Community</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>GreenRoots</span>
+                </div>
+                <p>Together, we can turn cities green and make our planet breathe again.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#help">How to Help</a>
+                    <a href="#impact">Impact</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#testimonials">Stories</a>
+                    <a href="#events">Events</a>
+                    <a href="#resources">Resources</a>
+                    <a href="#share-story">Share Story</a>
+                    <a href="#share-work">Share Work</a>
+                    <a href="#contact">Join Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GreenRoots. Made with 💚 for our planet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-image" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- Event Registration Modal -->
+    <div class="modal" id="event-registration-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🌳 Event Registration</h2>
+                <span class="modal-close" onclick="closeModal('event-registration-modal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form class="registration-form" id="event-registration-form">
+                    <input type="hidden" id="event-name" name="eventName" value="">
+                    <input type="hidden" id="event-date" name="eventDate" value="">
+                    <input type="hidden" id="event-location" name="eventLocation" value="">
+                    
+                    <div class="event-info" id="event-info" style="background: #f0f8ff; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary-green);">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-green);">Event Details</h4>
+                        <p id="event-details" style="margin: 0; color: var(--dark-text); font-size: 0.95rem;">Loading event information...</p>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-name">Full Name *</label>
+                            <input type="text" id="reg-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email Address *</label>
+                            <input type="email" id="reg-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-phone">Phone Number</label>
+                            <input type="tel" id="reg-phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-age">Age Group</label>
+                            <select id="reg-age" name="age">
+                                <option value="">Select Age Group</option>
+                                <option value="under-18">Under 18</option>
+                                <option value="18-30">18-30</option>
+                                <option value="31-50">31-50</option>
+                                <option value="over-50">Over 50</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-experience">Tree Planting Experience</label>
+                        <select id="reg-experience" name="experience">
+                            <option value="">Select Experience Level</option>
+                            <option value="beginner">Beginner - First time</option>
+                            <option value="some">Some experience</option>
+                            <option value="experienced">Very experienced</option>
+                            <option value="professional">Professional/Expert</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-group">Group Size</label>
+                        <select id="reg-group" name="group">
+                            <option value="1">Just me</option>
+                            <option value="2-5">2-5 people</option>
+                            <option value="6-10">6-10 people</option>
+                            <option value="10+">More than 10 people</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-dietary">Dietary Requirements</label>
+                        <textarea id="reg-dietary" name="dietary" rows="2" placeholder="Any allergies or dietary restrictions for the free lunch?"></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" checked>
+                            <span class="checkmark"></span>
+                            Send me updates about future events
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="volunteer" checked>
+                            <span class="checkmark"></span>
+                            I'm interested in becoming a regular volunteer
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('event-registration-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Complete Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- School Registration Modal -->
+    <div class="modal" id="school-registration-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎓 School Registration</h2>
+                <span class="modal-close" onclick="closeModal('school-registration-modal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form class="registration-form" id="school-registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="school-name">School Name *</label>
+                            <input type="text" id="school-name" name="schoolName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="school-type">School Type</label>
+                            <select id="school-type" name="schoolType">
+                                <option value="">Select Type</option>
+                                <option value="elementary">Elementary School</option>
+                                <option value="middle">Middle School</option>
+                                <option value="high">High School</option>
+                                <option value="private">Private School</option>
+                                <option value="charter">Charter School</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Contact Person *</label>
+                            <input type="text" id="contact-name" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-title">Title/Position</label>
+                            <input type="text" id="contact-title" name="contactTitle" placeholder="e.g., Teacher, Principal, Coordinator">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number</label>
+                            <input type="tel" id="contact-phone" name="contactPhone">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="student-count">Number of Students</label>
+                            <select id="student-count" name="studentCount">
+                                <option value="">Select Range</option>
+                                <option value="1-25">1-25 students</option>
+                                <option value="26-50">26-50 students</option>
+                                <option value="51-100">51-100 students</option>
+                                <option value="100+">More than 100 students</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade-level">Grade Level</label>
+                            <select id="grade-level" name="gradeLevel">
+                                <option value="">Select Grade</option>
+                                <option value="k-2">Kindergarten - 2nd Grade</option>
+                                <option value="3-5">3rd - 5th Grade</option>
+                                <option value="6-8">6th - 8th Grade</option>
+                                <option value="9-12">9th - 12th Grade</option>
+                                <option value="mixed">Mixed Grades</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred-date">Preferred Date Range</label>
+                        <input type="text" id="preferred-date" name="preferredDate" placeholder="e.g., December 10-15, 2024">
+                    </div>
+                    <div class="form-group">
+                        <label for="special-requirements">Special Requirements</label>
+                        <textarea id="special-requirements" name="specialRequirements" rows="3" placeholder="Any accessibility needs, special accommodations, or specific learning objectives?"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('school-registration-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-school"></i>
+                            Register School
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Planning Modal -->
+    <div class="modal" id="event-planning-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🌱 Plan Your Event</h2>
+                <span class="modal-close" onclick="closeModal('event-planning-modal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form class="registration-form" id="event-planning-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="organizer-name">Your Name *</label>
+                            <input type="text" id="organizer-name" name="organizerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization">Organization</label>
+                            <input type="text" id="organization" name="organization" placeholder="Company, School, Community Group, etc.">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="organizer-email">Email Address *</label>
+                            <input type="email" id="organizer-email" name="organizerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organizer-phone">Phone Number</label>
+                            <input type="tel" id="organizer-phone" name="organizerPhone">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="event-location">Event Location *</label>
+                            <input type="text" id="event-location" name="eventLocation" placeholder="City, State" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Preferred Date</label>
+                            <input type="date" id="event-date" name="eventDate">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expected-participants">Expected Participants</label>
+                            <select id="expected-participants" name="expectedParticipants">
+                                <option value="">Select Range</option>
+                                <option value="10-25">10-25 people</option>
+                                <option value="26-50">26-50 people</option>
+                                <option value="51-100">51-100 people</option>
+                                <option value="100-200">100-200 people</option>
+                                <option value="200+">More than 200 people</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" name="eventType">
+                                <option value="">Select Type</option>
+                                <option value="community">Community Tree Planting</option>
+                                <option value="corporate">Corporate Team Building</option>
+                                <option value="school">School Educational Event</option>
+                                <option value="memorial">Memorial Tree Planting</option>
+                                <option value="restoration">Habitat Restoration</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="support-needed">Support Needed</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="support" value="planning">
+                                <span class="checkmark"></span>
+                                Event planning assistance
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="support" value="supplies">
+                                <span class="checkmark"></span>
+                                Tree saplings and supplies
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="support" value="volunteers">
+                                <span class="checkmark"></span>
+                                Volunteer coordination
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="support" value="education">
+                                <span class="checkmark"></span>
+                                Educational materials
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-goals">Event Goals & Vision</label>
+                        <textarea id="event-goals" name="eventGoals" rows="3" placeholder="Tell us about your vision for this event and what you hope to achieve..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('event-planning-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Start Planning
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Admin Login</h2>
+                <span class="modal-close" onclick="closeAdminLogin()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="admin-login-form" autocomplete="off">
+                    <div class="form-group">
+                        <label for="admin-email">Email Address</label>
+                        <input type="email" id="admin-email" name="email" required placeholder="Enter admin email" autocomplete="new-email">
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" name="password" required placeholder="Enter admin password" autocomplete="new-password">
+                    </div>
+                    <div id="admin-login-error" class="error-message" style="display: none;"></div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" id="admin-login-submit">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Login to Dashboard
+                        </button>
+                    </div>
+                </form>
+                <div class="admin-login-info">
+                    <p><i class="fas fa-info-circle"></i> Admin access is required to manage website content and view form submissions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Firebase SDK and Dynamic Content -->
+    <script type="module">
+        import { database } from './firebase-config.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+        import { initializeDynamicContent } from './dynamic-content.js';
+        
+        // Initialize Firebase Firestore for form submissions
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBu_EJujDB_gviiZscMF1ON_URgg_7olEk",
+            authDomain: "greenroot-b5258.firebaseapp.com",
+            databaseURL: "https://greenroot-b5258-default-rtdb.firebaseio.com",
+            projectId: "greenroot-b5258",
+            storageBucket: "greenroot-b5258.firebasestorage.app",
+            messagingSenderId: "73919337791",
+            appId: "1:73919337791:web:aa8564ba05e34b83682f8a",
+            measurementId: "G-FYDXLG646B"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make Firebase available globally
+        window.firebaseDB = db;
+        window.firebaseCollection = collection;
+        window.firebaseAddDoc = addDoc;
+        window.firebaseServerTimestamp = serverTimestamp;
+        window.realtimeDatabase = database;
+        
+        // Import auth functions for admin login
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js';
+        const auth = getAuth(app);
+        window.auth = auth;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        
+        // Initialize dynamic content when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Small delay to ensure all elements are rendered
+            setTimeout(() => {
+                initializeDynamicContent();
+                initializeAdminLogin();
+            }, 100);
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</html>
