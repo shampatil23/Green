@@ -1833,3 +1833,42 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// ===== MOBILE MENU NAVIGATION =====
+// Add click handler for mobile menu button
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on mobile
+    function isMobile() {
+        return window.innerWidth <= 1024;
+    }
+    
+    // Add click handler to logo for mobile menu
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) {
+        navLogo.addEventListener('click', function(e) {
+            if (isMobile()) {
+                e.preventDefault();
+                window.location.href = 'mobile-menu.html';
+            }
+        });
+    }
+    
+    // Add click handler for hamburger icon in right corner
+    const navContainer = document.querySelector('.nav-container');
+    if (navContainer) {
+        navContainer.addEventListener('click', function(e) {
+            if (isMobile()) {
+                // Check if click is in the right corner area (where hamburger is)
+                const rect = navContainer.getBoundingClientRect();
+                const clickX = e.clientX;
+                const screenWidth = window.innerWidth;
+                
+                // If clicked within 80px from right edge, open menu
+                if (clickX > screenWidth - 80) {
+                    e.preventDefault();
+                    window.location.href = 'mobile-menu.html';
+                }
+            }
+        });
+    }
+});
